@@ -119,44 +119,68 @@
                                 <div class="card-body py-5 my-2">
                                     <h2 class="font-weight-bold text-8 mb-0">Simple as ABC to signup and start taking surveys</h2>
                                     <p class="mb-4">Join Now - It's Free!</p>
-                                    <form action="/" id="frmSignIn" method="post" class="needs-validation">
+                                    <form id="frmSignIn" class="needs-validation">
                                         <div class="row">
                                             <div class="form-group col-12 col-md-6">
-                                                <label class="form-label text-color-dark text-3">First Name <span
-                                                    class="text-color-danger">*</span></label>
-                                                <input type="text" value="" class="form-control form-control-lg text-4" required>
+                                                <label class="form-label text-color-dark text-3">First Name <span class="text-color-danger">*</span></label>
+                                                <input type="text" name="firstName" class="form-control form-control-lg text-4" id="firstName" required>
                                             </div>
                                             <div class="form-group col-12 col-md-6">
-                                                <label class="form-label text-color-dark text-3">Last Name <span
-                                                    class="text-color-danger">*</span></label>
-                                                <input type="text" value="" class="form-control form-control-lg text-4" required>
+                                                <label class="form-label text-color-dark text-3">Last Name <span class="text-color-danger">*</span></label>
+                                                <input type="text" name="lastName" class="form-control form-control-lg text-4" id="lastName" required>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="form-group col">
-                                                <label class="form-label text-color-dark text-3">Email address <span
-                                                    class="text-color-danger">*</span></label>
-                                                <input type="email" value="" class="form-control form-control-lg text-4" required>
+                                                <label class="form-label text-color-dark text-3">Email <span class="text-color-danger">*</span></label>
+                                                <input type="email" name="email" class="form-control form-control-lg text-4" id="email" required>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="form-group col">
-                                                <label class="form-label text-color-dark text-3">Password <span
-                                                    class="text-color-danger">*</span></label>
-                                                <input type="password" value="" class="form-control form-control-lg text-4" required>
+                                                <label class="form-label text-color-dark text-3">Password <span class="text-color-danger">*</span></label>
+                                                <input type="password" name="password" class="form-control form-control-lg text-4" id="password" required>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col">
+                                                <label class="form-label text-color-dark text-3">Address <span class="text-color-danger">*</span></label>
+                                                <input type="text" name="address" class="form-control form-control-lg text-4" id="address" required>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col">
+                                                <label class="form-label text-color-dark text-3">Zip <span class="text-color-danger">*</span></label>
+                                                <input type="text" name="zip" class="form-control form-control-lg text-4" id="zip" required>
+                                            </div>
+                                            <div class="form-group col">
+                                                <label class="form-label text-color-dark text-3">Phone Number <span class="text-color-danger">*</span></label>
+                                                <input type="tel" name="phoneNumber" class="form-control form-control-lg text-4" id="phoneNumber" required>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col">
+                                                <label class="form-label text-color-dark text-3">Highest Level Of Education <span class="text-color-danger">*</span></label>
+                                                <select class="form-control form-control-lg text-4" id="education_level" name="education_level" required>
+                                                    <option value="">-- Select Highest Level Of Education --</option>
+                                                    <option value="upto10">10th Grade or Below</option>
+                                                    <option value="secondary">12th Grade</option>
+                                                    <option value="bachelors">Bachelor's</option>
+                                                    <option value="masters">Master's or Above</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="row justify-content-between">
                                             <div class="form-group col-md-auto">
                                                 <div class="custom-control custom-checkbox form-check">
-                                                    <input type="checkbox" class="custom-control-input form-check-input" id="rememberme">
-                                                    <label class="form-label custom-control-label cur-pointer text-3" for="rememberme">I have read and accept the Terms of <a href="terms.html"> Terms and Conditions</a> and <a href="privacy.html"> Privacy Policy</a></label>
+                                                    <input type="checkbox" class="custom-control-input form-check-input" id="acceptTerms" required>
+                                                    <label class="form-label custom-control-label cur-pointer text-3" for="acceptTerms">I have read and accept the <a href="terms.html">Terms and Conditions</a> and <a href="privacy.html">Privacy Policy</a></label>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="form-group col">
-                                                <button type="submit" class="btn w-100 btn-modern btn-dark btn-arrow-effect-1 text-capitalize text-2-5 px-5 py-3 anim-hover-translate-top-5px transition-2ms" data-loading-text="Loading...">Sign Up Now! <i class="fas fa-arrow-right ms-2"></i></button>
+                                                <button type="submit" class="btn w-100 btn-modern btn-dark btn-arrow-effect-1 text-capitalize text-2-5 px-5 py-3" id="submitBtn">Sign Up Now! <i class="fas fa-arrow-right ms-2"></i></button>
                                             </div>
                                         </div>
                                     </form>
@@ -254,7 +278,71 @@
 
     <!-- Theme Initialization Files -->
     <script src="js/theme.init.js"></script>
+    <script>
+        
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("frmSignIn");
 
+    form.addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Get form field values
+        let firstName = document.getElementById("firstName")?.value.trim();
+        let lastName = document.getElementById("lastName")?.value.trim();
+        let email = document.getElementById("email")?.value.trim();
+        let password = document.getElementById("password")?.value.trim();
+        let address = document.getElementById("address")?.value.trim();
+        let zip = document.getElementById("zip")?.value.trim();
+        let phone = document.getElementById("phoneNumber")?.value.trim();
+        let education = document.getElementById("education_level")?.value;
+        let termsAccepted = document.getElementById("acceptTerms")?.checked;
+
+        // Simple validation messages
+        if (!firstName || !lastName || !email || !password || !address || !zip || !phone || !education) {
+            alert("Please fill in all required fields.");
+            return;
+        }
+
+        // Email validation
+        let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            alert("Please enter a valid email address.");
+            return;
+        }
+
+        // Password length validation
+        if (password.length < 6) {
+            alert("Password must be at least 6 characters long.");
+            return;
+        }
+
+        // Phone validation (Numbers only, 10 digits)
+        let phonePattern = /^\d{10}$/;
+        if (!phonePattern.test(phone)) {
+            alert("Please enter a valid 10-digit phone number.");
+            return;
+        }
+
+        // Zip code validation (Numbers only, 5-6 digits)
+        let zipPattern = /^\d{5,6}$/;
+        if (!zipPattern.test(zip)) {
+            alert("Please enter a valid ZIP code.");
+            return;
+        }
+
+        // Terms and Conditions checkbox validation
+        if (!termsAccepted) {
+            alert("You must accept the Terms and Conditions.");
+            return;
+        }
+
+        // ✅ All validations passed
+        window.location.href = "coregistration1.html"; // Redirect to homepage
+    });
+});
+
+
+        </script>
 
 </body>
 
